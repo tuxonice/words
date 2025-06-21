@@ -8,6 +8,7 @@ A PHP script that generates **pronounceable Portuguese-like words** using a cust
 - Each letter has a probability distribution of possible following letters
 - Incorporates common Portuguese word endings
 - Generates words of customizable length
+- Includes special Portuguese characters like 'ç' (cedilla), which is now explicitly included in the output
 
 ## 🚀 Installation
 
@@ -36,6 +37,9 @@ php run.php 15 8
 
 # Generate 50 words of length 5 and save to file
 php run.php 50 5 output.txt
+
+# Generate 10 words with easy spelling patterns
+php run.php 10 6 null easy
 ```
 
 ## 🧪 Sample Output
@@ -51,6 +55,8 @@ matilo
 serona
 zubilo
 tevara
+façãos
+preção
 ```
 
 ## 🔧 Customization
@@ -60,6 +66,20 @@ You can customize the script by modifying:
 1. The transition matrix in `run.php` to adjust letter frequencies
 2. The common word endings array to change word terminations
 3. The word generation algorithm parameters
+4. Use the "easy" mode parameter for simpler, more easily pronounceable words
+
+### Easy Spelling Mode
+
+The script includes an "easy spelling mode" that generates words with:
+- Simpler consonant-vowel patterns
+- No complex letter combinations
+- More predictable pronunciation
+- Easier to spell and read
+
+This mode is ideal for:
+- Learning materials
+- Names that need to be easily remembered
+- Words that need to be easily pronounced by non-Portuguese speakers
 
 ### Example Code
 
@@ -69,6 +89,12 @@ $matrix = [...]; // The transition matrix
 $commonEndings = ['a', 'o', 'e', 'ar', 'er', 'ir']; 
 $word = generateWordFromMatrix($matrix, 6, $commonEndings);
 echo $word;
+
+// Generate an easy-to-spell word
+$easyMatrix = [...]; // The simplified matrix
+$easyEndings = ['a', 'o', 'e']; 
+$easyWord = generateWordFromMatrix($easyMatrix, 6, $easyEndings, true);
+echo $easyWord;
 ```
 
 ## 📦 Requirements
@@ -79,6 +105,3 @@ echo $word;
 ## 📝 License
 
 This script is available under the MIT License—use it freely in your own projects!
-
-
-
