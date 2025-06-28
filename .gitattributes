@@ -1,0 +1,31 @@
+# Git attributes for the Word Generator package
+
+# Exclude development files from archives/exports
+/.git               export-ignore
+/.gitattributes     export-ignore
+/.gitignore         export-ignore
+/.idea              export-ignore
+/tests              export-ignore
+/examples           export-ignore
+/Dockerfile         export-ignore
+/docker-compose.yml export-ignore
+/.phpunit.result.cache export-ignore
+/phpunit.xml        export-ignore
+
+# Documentation
+/README.md          export-ignore
+
+# Set default behavior for line endings
+* text=auto eol=lf
+
+# Explicitly declare text files to be normalized
+*.php text
+*.md text
+*.json text
+*.xml text
+*.yml text
+
+# Declare binary files that should not be modified
+*.png binary
+*.jpg binary
+*.gif binary
