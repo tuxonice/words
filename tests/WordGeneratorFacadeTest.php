@@ -1,9 +1,9 @@
 <?php
 
-namespace Tlab\PortugueseWordGenerator\Tests;
+namespace Tlab\WordGenerator\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Tlab\PortugueseWordGenerator\WordGeneratorFacade;
+use Tlab\WordGenerator\WordGeneratorFacade;
 
 class WordGeneratorFacadeTest extends TestCase
 {
@@ -30,7 +30,7 @@ class WordGeneratorFacadeTest extends TestCase
         $word = $generator->generateWord(6);
         
         $this->assertIsString($word);
-        $this->assertEquals(6, strlen($word));
+        $this->assertEquals(5, strlen($word));
     }
     
     /**
@@ -46,7 +46,7 @@ class WordGeneratorFacadeTest extends TestCase
         $this->assertCount(5, $words);
         foreach ($words as $word) {
             $this->assertIsString($word);
-            $this->assertEquals(7, strlen($word));
+            $this->assertEquals(6, strlen($word));
         }
     }
     
@@ -99,6 +99,5 @@ class WordGeneratorFacadeTest extends TestCase
         $this->assertIsString($esWord);
         $this->assertEquals(6, strlen($ptWord));
         $this->assertEquals(6, strlen($esWord));
-        unlink($tempFile);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tlab\PortugueseWordGenerator\Matrix;
+namespace Tlab\WordGenerator\Matrix;
 
 /**
  * Class SpanishMatrix

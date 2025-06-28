@@ -1,8 +1,8 @@
 <?php
 
-namespace Tlab\PortugueseWordGenerator\Generator;
+namespace Tlab\WordGenerator\Generator;
 
-use Tlab\PortugueseWordGenerator\Matrix\TransitionMatrix;
+use Tlab\WordGenerator\Matrix\TransitionMatrix;
 
 /**
  * Class WordGenerator

@@ -1,10 +1,10 @@
 <?php
 
-namespace Tlab\PortugueseWordGenerator\Tests\Generator;
+namespace Tlab\WordGenerator\Tests\Generator;
 
 use PHPUnit\Framework\TestCase;
-use Tlab\PortugueseWordGenerator\Generator\WordGenerator;
-use Tlab\PortugueseWordGenerator\Matrix\PortugueseMatrix;
+use Tlab\WordGenerator\Generator\WordGenerator;
+use Tlab\WordGenerator\Matrix\PortugueseMatrix;
 
 class WordGeneratorTest extends TestCase
 {

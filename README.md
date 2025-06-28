@@ -1,48 +1,141 @@
-# Fake Portuguese Word Generator
+# Word Generator
 
-A PHP script that generates **pronounceable Portuguese-like words** using a custom transition matrix and linguistic patterns. Perfect for creating fictional names, placeholder text, or language generation experiments.
+A PHP package for generating pronounceable words based on language-specific phonetic patterns. Perfect for creating fictional names, placeholder text, or language generation experiments.
 
-## 🧠 How It Works
+## Features
 
-- Uses a transition matrix based on Portuguese phonetic patterns
-- Each letter has a probability distribution of possible following letters
-- Incorporates common Portuguese word endings
-- Generates words of customizable length
-- Includes special Portuguese characters like 'ç' (cedilla), which is now explicitly included in the output
+- Generate random words based on language-specific letter transition probabilities
+- Support for multiple languages (currently Portuguese and Spanish)
+- Standard mode with authentic language-specific phonetic patterns
+- Easy mode with simpler letter combinations for easier pronunciation
+- Command-line interface for quick word generation
+- Configurable word length and quantity
+- Option to save generated words to a file
+- Extensible design for adding new languages
+- Fully object-oriented implementation with PSR-4 autoloading
 
-## 🚀 Installation
+## Installation
 
-No installation required! Simply download the `run.php` file and run it with PHP:
-
-```bash
-# Make sure you have PHP installed
-php -v
-
-# Clone or download this repository
-# Then navigate to the directory
-cd /path/to/words
-```
-
-## 📋 Usage
+### Via Composer
 
 ```bash
-# Basic usage (generates 10 words of length 6)
-php run.php
-
-# Generate 20 words
-php run.php 20
-
-# Generate 15 words of length 8
-php run.php 15 8
-
-# Generate 50 words of length 5 and save to file
-php run.php 50 5 output.txt
-
-# Generate 10 words with easy spelling patterns
-php run.php 10 6 null easy
+composer require tuxonice/portuguese-word-generator
 ```
 
-## 🧪 Sample Output
+### Manual Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/tuxonice/portuguese-word-generator.git
+cd portuguese-word-generator
+
+# Install dependencies
+composer install
+```
+
+## Usage
+
+### Basic Usage
+
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use Tlab\PortugueseWordGenerator\WordGeneratorFacade;
+
+// Create a generator with standard Portuguese patterns (default language)
+$generator = WordGeneratorFacade::standard();
+
+// Generate a single word
+$word = $generator->generateWord(6); // 6 is the word length
+echo $word . PHP_EOL;
+
+// Generate multiple words
+$words = $generator->generateWords(5, 8); // 5 words of length 8
+foreach ($words as $word) {
+    echo $word . PHP_EOL;
+}
+
+// Use easy mode for simpler words
+$easyGenerator = WordGeneratorFacade::easyMode();
+$easyWords = $easyGenerator->generateWords(3, 5); // 3 words of length 5
+
+// Easy mode for Spanish
+$easySpanishGenerator = WordGeneratorFacade::easyMode('spanish');
+$easySpanishWords = $easySpanishGenerator->generateWords(3, 5);
+
+// Generate Spanish words
+$spanishGenerator = WordGeneratorFacade::standard('spanish');
+$spanishWord = $spanishGenerator->generateWord(7);
+echo "Spanish word: $spanishWord" . PHP_EOL;
+
+// Use language codes
+$ptGenerator = new WordGeneratorFacade('pt'); // Portuguese
+$esGenerator = new WordGeneratorFacade('es'); // Spanish
+```
+
+### Saving to File
+
+```php
+$generator = WordGeneratorFacade::standard();
+$words = $generator->generateWords(100, 6);
+
+// Save to file
+$generator->saveToFile($words, 'generated_words.txt');
+```
+
+## Command Line Interface
+
+The package includes a command-line tool for quick word generation:
+
+```bash
+# Generate 10 Portuguese words with default length (6)
+php bin/generate-words
+
+# Generate 5 words with length 8
+php bin/generate-words 5 8
+
+# Generate 20 words with length 7 and save to a file
+php bin/generate-words 20 7 output.txt
+
+# Generate 15 words with length 6 using easy mode
+php bin/generate-words 15 6 - easy
+
+# Generate 10 Spanish words with length 6
+php bin/generate-words 10 6 - spanish
+
+# Generate 10 Spanish words with length 6 in easy mode
+php bin/generate-words 10 6 - easy spanish
+```
+
+## Package Structure
+
+```
+portugese-word-generator/
+├── bin/                    # Command-line tools
+│   └── generate-words      # CLI script for word generation
+├── src/                    # Source code
+│   ├── Generator/          # Word generation logic
+│   │   └── WordGenerator.php
+│   ├── Matrix/             # Transition matrices
+│   │   ├── LanguageMatrix.php     # Abstract base class for language matrices
+│   │   ├── PortugueseMatrix.php   # Portuguese language matrix
+│   │   ├── SpanishMatrix.php      # Spanish language matrix
+│   │   └── TransitionMatrix.php   # Base matrix functionality
+│   └── WordGeneratorFacade.php    # Main facade class
+├── tests/                  # Unit tests
+│   ├── Generator/
+│   │   └── WordGeneratorTest.php
+│   └── WordGeneratorFacadeTest.php
+├── examples/               # Example usage scripts
+│   ├── basic-usage.php
+│   └── multi-language-usage.php
+├── composer.json           # Composer configuration
+└── README.md              # Documentation
+```
+
+## Sample Output
 
 ```
 carito
@@ -59,49 +152,105 @@ façãos
 preção
 ```
 
-## 🔧 Customization
+## Extending with New Languages
 
-You can customize the script by modifying:
+The package is designed to be easily extended with new languages. To add support for a new language:
 
-1. The transition matrix in `run.php` to adjust letter frequencies
-2. The common word endings array to change word terminations
-3. The word generation algorithm parameters
-4. Use the "easy" mode parameter for simpler, more easily pronounceable words
+1. Create a new class in the `src/Matrix` directory that extends `LanguageMatrix`
+2. Implement the required methods:
+   - `getLanguageCode()`: Return the language code (e.g., 'en', 'fr')
+   - `getLanguageName()`: Return the full language name (e.g., 'English', 'French')
+   - `createStandard()`: Create a standard transition matrix for the language
+   - `createEasyMode()`: Create a simplified transition matrix for the language
 
-### Easy Spelling Mode
-
-The script includes an "easy spelling mode" that generates words with:
-- Simpler consonant-vowel patterns
-- No complex letter combinations
-- More predictable pronunciation
-- Easier to spell and read
-
-This mode is ideal for:
-- Learning materials
-- Names that need to be easily remembered
-- Words that need to be easily pronounced by non-Portuguese speakers
-
-### Example Code
+Example:
 
 ```php
-// Generate a single Portuguese-like word
-$matrix = [...]; // The transition matrix
-$commonEndings = ['a', 'o', 'e', 'ar', 'er', 'ir']; 
-$word = generateWordFromMatrix($matrix, 6, $commonEndings);
-echo $word;
+<?php
 
-// Generate an easy-to-spell word
-$easyMatrix = [...]; // The simplified matrix
-$easyEndings = ['a', 'o', 'e']; 
-$easyWord = generateWordFromMatrix($easyMatrix, 6, $easyEndings, true);
-echo $easyWord;
+namespace Tlab\PortugueseWordGenerator\Matrix;
+
+class FrenchMatrix extends LanguageMatrix
+{
+    public function getLanguageCode(): string
+    {
+        return 'fr';
+    }
+    
+    public function getLanguageName(): string
+    {
+        return 'French';
+    }
+    
+    public static function createStandard(): self
+    {
+        // Define French-specific transition matrix
+        $matrix = [
+            // French vowels and consonants with their transitions
+            // ...
+        ];
+        
+        // Common French word endings
+        $commonEndings = ['e', 'es', 'ent', 'ais', 'ait', 'er', 'ez', 'eur', 'euse', 'ion', 'tion'];
+        
+        return new self($matrix, $commonEndings);
+    }
+    
+    public static function createEasyMode(): self
+    {
+        // Define simplified French transition matrix
+        // ...
+        
+        return new self($easyMatrix, $easyEndings);
+    }
+}
 ```
 
-## 📦 Requirements
+3. Update the `createMatrixForLanguage()` method in `WordGeneratorFacade` to include your new language:
 
-* PHP 7.0+
-* No external dependencies
+```php
+protected function createMatrixForLanguage(string $language, bool $easyMode): LanguageMatrix
+{
+    switch ($language) {
+        case 'portuguese':
+        case 'pt':
+            return $easyMode ? PortugueseMatrix::createEasyMode() : PortugueseMatrix::createStandard();
+        case 'spanish':
+        case 'es':
+            return $easyMode ? SpanishMatrix::createEasyMode() : SpanishMatrix::createStandard();
+        case 'french':
+        case 'fr':
+            return $easyMode ? FrenchMatrix::createEasyMode() : FrenchMatrix::createStandard();
+        default:
+            // Default to Portuguese if the language is not supported
+            return $easyMode ? PortugueseMatrix::createEasyMode() : PortugueseMatrix::createStandard();
+    }
+}
+```
 
-## 📝 License
+## Running Tests
 
-This script is available under the MIT License—use it freely in your own projects!
+### Using Composer
+
+```bash
+composer test
+```
+
+### Using Docker
+
+A Docker environment is provided for easy testing without installing PHP locally.
+
+```bash
+# Build and run tests
+docker-compose up --build
+
+# Run tests in an existing container
+docker-compose run app composer test
+
+# Run a shell in the container
+docker-compose run app bash
+```
+
+## License
+
+MIT

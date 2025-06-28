@@ -1,11 +1,11 @@
 <?php
 
-namespace Tlab\PortugueseWordGenerator;
+namespace Tlab\WordGenerator;
 
-use Tlab\PortugueseWordGenerator\Generator\WordGenerator;
-use Tlab\PortugueseWordGenerator\Matrix\LanguageMatrix;
-use Tlab\PortugueseWordGenerator\Matrix\PortugueseMatrix;
-use Tlab\PortugueseWordGenerator\Matrix\SpanishMatrix;
+use Tlab\WordGenerator\Generator\WordGenerator;
+use Tlab\WordGenerator\Matrix\LanguageMatrix;
+use Tlab\WordGenerator\Matrix\PortugueseMatrix;
+use Tlab\WordGenerator\Matrix\SpanishMatrix;
 
 /**
  * Class WordGeneratorFacade
