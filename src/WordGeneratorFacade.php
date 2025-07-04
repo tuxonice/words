@@ -70,24 +70,24 @@ class WordGeneratorFacade
     /**
      * Generate a single word in the selected language
      * 
-     * @param  int $length Target word length
+     * @param  int $maxLength Maximum word length
      * @return string Generated word in the selected language
      */
-    public function generateWord(int $length = 6): string
+    public function generateWord(int $maxLength = 6): string
     {
-        return $this->generator->generateWord($length);
+        return $this->generator->generateWord($maxLength);
     }
 
     /**
      * Generate multiple words in the selected language
      * 
-     * @param  int $count  Number of words to generate
-     * @param  int $length Target word length for each word
+     * @param  int $count     Number of words to generate
+     * @param  int $maxLength Maximum word length for each word
      * @return array Array of generated words
      */
-    public function generateWords(int $count, int $length = 6): array
+    public function generateWords(int $count, int $maxLength = 6): array
     {
-        return $this->generator->generateWords($count, $length);
+        return $this->generator->generateWords($count, $maxLength);
     }
 
     /**

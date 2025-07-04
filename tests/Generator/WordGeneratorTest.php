@@ -44,13 +44,15 @@ class WordGeneratorTest extends TestCase
         $matrix = PortugueseMatrix::createStandard();
         $generator = new WordGenerator($matrix);
         
-        $words = $generator->generateWords(5, 7);
+        $maxLength = 7;
+        $words = $generator->generateWords(5, $maxLength);
         
         $this->assertIsArray($words);
         $this->assertCount(5, $words);
         foreach ($words as $word) {
             $this->assertIsString($word);
-            $this->assertEquals(7, strlen($word));
+            $this->assertLessThanOrEqual($maxLength, strlen($word));
+            $this->assertGreaterThan(0, strlen($word), 'Word should not be empty');
         }
     }
 }

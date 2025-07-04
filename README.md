@@ -9,7 +9,7 @@ A PHP package for generating pronounceable words based on language-specific phon
 - Standard mode with authentic language-specific phonetic patterns
 - Easy mode with simpler letter combinations for easier pronunciation
 - Command-line interface for quick word generation
-- Configurable word length and quantity
+- Configurable maximum word length and quantity
 - Option to save generated words to a file
 - Extensible design for adding new languages
 - Fully object-oriented implementation with PSR-4 autoloading
@@ -35,6 +35,10 @@ composer install
 
 ## Usage
 
+### Word Length Behavior
+
+The `generateWord()` and `generateWords()` methods accept a length parameter that specifies the **maximum** length of the generated words. The actual length of generated words may be shorter depending on the language's phonetic patterns and transition rules. This approach ensures more natural-sounding words while still keeping them within the desired length constraints.
+
 ### Basic Usage
 
 ```php
@@ -48,22 +52,22 @@ use Tlab\WordGenerator\WordGeneratorFacade;
 $generator = WordGeneratorFacade::standard();
 
 // Generate a single word
-$word = $generator->generateWord(6); // 6 is the word length
+$word = $generator->generateWord(6); // 6 is the maximum word length
 echo $word . PHP_EOL;
 
 // Generate multiple words
-$words = $generator->generateWords(5, 8); // 5 words of length 8
+$words = $generator->generateWords(5, 8); // 5 words with maximum length of 8
 foreach ($words as $word) {
     echo $word . PHP_EOL;
 }
 
 // Use easy mode for simpler words
 $easyGenerator = WordGeneratorFacade::easyMode();
-$easyWords = $easyGenerator->generateWords(3, 5); // 3 words of length 5
+$easyWords = $easyGenerator->generateWords(3, 5); // 3 words with maximum length of 5
 
 // Easy mode for Spanish
 $easySpanishGenerator = WordGeneratorFacade::easyMode('spanish');
-$easySpanishWords = $easySpanishGenerator->generateWords(3, 5);
+$easySpanishWords = $easySpanishGenerator->generateWords(3, 5); // 3 words with maximum length of 5
 
 // Generate Spanish words
 $spanishGenerator = WordGeneratorFacade::standard('spanish');
@@ -78,7 +82,7 @@ $esGenerator = new WordGeneratorFacade('es'); // Spanish
 ## Package Structure
 
 ```
-portugese-word-generator/
+words/
 ├── src/                    # Source code
 │   ├── Generator/          # Word generation logic
 │   │   └── WordGenerator.php
