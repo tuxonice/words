@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Tlab\PortugueseWordGenerator\WordGeneratorFacade;
+use Tlab\WordGenerator\WordGeneratorFacade;
 
 // Example 1: Generate Portuguese words (default language)
 echo "=== Portuguese Words ===\n";

@@ -2,10 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Tlab\PortugueseWordGenerator\PortugueseWordGenerator;
+use Tlab\WordGenerator\WordGenerator;
 
 // Create a standard generator
-$generator = PortugueseWordGenerator::standard();
+$generator = WordGenerator::standard();
 
 // Generate a single word
 echo "Single word: " . $generator->generateWord() . PHP_EOL;
@@ -18,7 +18,7 @@ foreach ($words as $word) {
 }
 
 // Use easy mode
-$easyGenerator = PortugueseWordGenerator::easyMode();
+$easyGenerator = WordGenerator::easyMode();
 
 echo "\nMultiple words (easy mode):\n";
 $easyWords = $easyGenerator->generateWords(5, 7); // 5 words of length 7

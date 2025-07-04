@@ -22,7 +22,7 @@ class TransitionMatrix
     /**
      * TransitionMatrix constructor
      * 
-     * @param array $matrix The transition matrix data
+     * @param array $matrix        The transition matrix data
      * @param array $commonEndings Common word endings
      */
     public function __construct(array $matrix, array $commonEndings)
@@ -59,15 +59,17 @@ class TransitionMatrix
     public function getStartingLetters(): array
     {
         // Filter out 'ç' from possible starting letters as it's never used at the beginning of Portuguese words
-        return array_filter(array_keys($this->matrix), function($key) {
-            return $key !== 'ç';
-        });
+        return array_filter(
+            array_keys($this->matrix), function ($key) {
+                return $key !== 'ç';
+            }
+        );
     }
 
     /**
      * Get possible next letters for a given letter
      * 
-     * @param string $letter The current letter
+     * @param  string $letter The current letter
      * @return array|null Array of possible next letters or null if none exist
      */
     public function getNextLetters(string $letter): ?array

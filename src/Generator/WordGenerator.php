@@ -29,7 +29,7 @@ class WordGenerator
     /**
      * Generate a single word
      * 
-     * @param int $length Target word length
+     * @param  int $length Target word length
      * @return string Generated word
      */
     public function generateWord(int $length = 6): string
@@ -83,8 +83,8 @@ class WordGenerator
     /**
      * Generate multiple words
      * 
-     * @param int $count Number of words to generate
-     * @param int $length Target word length
+     * @param  int $count  Number of words to generate
+     * @param  int $length Target word length
      * @return array Array of generated words
      */
     public function generateWords(int $count, int $length = 6): array

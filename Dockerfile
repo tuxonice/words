@@ -1,14 +1,20 @@
-FROM php:8.2-cli
+FROM php:8.3-cli
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    git \
     unzip \
+    wget \
     libzip-dev \
     && docker-php-ext-install zip
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install the latest Composer manually
+RUN EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)" && \
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")" && \
+    if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]; then >&2 echo 'Invalid installer signature'; exit 1; fi && \
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    rm composer-setup.php
+
 
 # Set working directory
 WORKDIR /app

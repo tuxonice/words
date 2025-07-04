@@ -19,15 +19,15 @@ A PHP package for generating pronounceable words based on language-specific phon
 ### Via Composer
 
 ```bash
-composer require tuxonice/portuguese-word-generator
+composer require tuxonice/words
 ```
 
 ### Manual Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/tuxonice/portuguese-word-generator.git
-cd portuguese-word-generator
+git clone https://github.com/tuxonice/words.git
+cd words
 
 # Install dependencies
 composer install
@@ -42,7 +42,7 @@ composer install
 
 require_once 'vendor/autoload.php';
 
-use Tlab\PortugueseWordGenerator\WordGeneratorFacade;
+use Tlab\WordGenerator\WordGeneratorFacade;
 
 // Create a generator with standard Portuguese patterns (default language)
 $generator = WordGeneratorFacade::standard();
@@ -75,46 +75,10 @@ $ptGenerator = new WordGeneratorFacade('pt'); // Portuguese
 $esGenerator = new WordGeneratorFacade('es'); // Spanish
 ```
 
-### Saving to File
-
-```php
-$generator = WordGeneratorFacade::standard();
-$words = $generator->generateWords(100, 6);
-
-// Save to file
-$generator->saveToFile($words, 'generated_words.txt');
-```
-
-## Command Line Interface
-
-The package includes a command-line tool for quick word generation:
-
-```bash
-# Generate 10 Portuguese words with default length (6)
-php bin/generate-words
-
-# Generate 5 words with length 8
-php bin/generate-words 5 8
-
-# Generate 20 words with length 7 and save to a file
-php bin/generate-words 20 7 output.txt
-
-# Generate 15 words with length 6 using easy mode
-php bin/generate-words 15 6 - easy
-
-# Generate 10 Spanish words with length 6
-php bin/generate-words 10 6 - spanish
-
-# Generate 10 Spanish words with length 6 in easy mode
-php bin/generate-words 10 6 - easy spanish
-```
-
 ## Package Structure
 
 ```
 portugese-word-generator/
-├── bin/                    # Command-line tools
-│   └── generate-words      # CLI script for word generation
 ├── src/                    # Source code
 │   ├── Generator/          # Word generation logic
 │   │   └── WordGenerator.php
@@ -168,7 +132,7 @@ Example:
 ```php
 <?php
 
-namespace Tlab\PortugueseWordGenerator\Matrix;
+namespace Tlab\WordGenerator\Matrix;
 
 class FrenchMatrix extends LanguageMatrix
 {
