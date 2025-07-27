@@ -1,5 +1,11 @@
 # Word Generator
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/tuxonice/words.svg?style=flat-square)](https://packagist.org/packages/tuxonice/words)
+[![Total Downloads](https://img.shields.io/packagist/dt/tuxonice/words.svg?style=flat-square)](https://packagist.org/packages/tuxonice/words)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/tuxonice/words/php-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/tuxonice/words/actions/workflows/php-tests.yml)
+[![License](https://img.shields.io/github/license/tuxonice/words?style=flat-square)](https://github.com/tuxonice/words/blob/main/LICENSE.md)
+[![PHP Version](https://img.shields.io/packagist/php-v/tuxonice/words?style=flat-square)](https://packagist.org/packages/tuxonice/words)
+
 A PHP package for generating pronounceable words based on language-specific phonetic patterns. Perfect for creating fictional names, placeholder text, or language generation experiments.
 
 ## Features

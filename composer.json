@@ -3,10 +3,17 @@
     "description": "A PHP package for generating pronounceable language-like words",
     "type": "library",
     "license": "MIT",
+    "keywords": ["word-generator", "language", "portuguese", "spanish", "random-words", "fake-words", "pronounceable"],
+    "homepage": "https://github.com/tuxonice/words",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tuxonice/words.git"
+    },
     "authors": [
         {
-            "name": "Tlab",
-            "email": "example@example.com"
+            "name": "Helder Correia",
+            "email": "tuxboy@tlab.pt",
+            "role" : "Developer"
         }
     ],
     "minimum-stability": "stable",
