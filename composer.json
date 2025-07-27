@@ -5,9 +5,9 @@
     "license": "MIT",
     "keywords": ["word-generator", "language", "portuguese", "spanish", "random-words", "fake-words", "pronounceable"],
     "homepage": "https://github.com/tuxonice/words",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tuxonice/words.git"
+    "support": {
+        "issues": "https://github.com/tuxonice/words/issues",
+        "source": "https://github.com/tuxonice/words"
     },
     "authors": [
         {
