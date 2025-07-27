@@ -225,6 +225,55 @@ docker-compose run app composer test
 docker-compose run app bash
 ```
 
+## Contributing
+
+Contributions are welcome and will be fully credited. We accept contributions via Pull Requests on [GitHub](https://github.com/tuxonice/words).
+
+### Pull Requests
+
+- **[PSR-12 Coding Standard](https://www.php-fig.org/psr/psr-12/)** - The easiest way to apply the conventions is to install [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer).
+- **Add tests!** - Your patch won't be accepted if it doesn't have tests.
+- **Document any change in behavior** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+- **Consider our release cycle** - We try to follow [SemVer v2.0.0](https://semver.org/). Randomly breaking public APIs is not an option.
+- **Create feature branches** - Don't ask us to pull from your main branch.
+- **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
+- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](https://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
+
+### Adding a New Language
+
+To add support for a new language:
+
+1. Create a new class in the `src/Matrix` directory that extends `LanguageMatrix`
+2. Implement the required methods as described in the [Extending with New Languages](#extending-with-new-languages) section
+3. Add tests for your new language matrix in the `tests` directory
+4. Update the README.md to include your new language in the examples
+
+### Running Tests
+
+Run the test suite with the following command:
+
+```bash
+composer test
+```
+
+### Code Style
+
+This package follows the [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standard. To check your code style, run:
+
+```bash
+composer check-style
+```
+
+To automatically fix code style issues, run:
+
+```bash
+composer fix-style
+```
+
+## Security
+
+If you discover any security related issues, please email tuxboy@tlab.pt instead of using the issue tracker.
+
 ## License
 
 MIT
