@@ -26,10 +26,8 @@ foreach ($easyWords as $word) {
     echo "- $word\n";
 }
 
-// Save to file example (commented out)
-/*
+// Save to file example
 $moreWords = $generator->generateWords(100, 6);
 if ($generator->saveToFile($moreWords, __DIR__ . '/output.txt')) {
     echo "\nSuccessfully saved 100 words to file.\n";
 }
-*/
