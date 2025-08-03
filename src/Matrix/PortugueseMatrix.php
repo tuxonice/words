@@ -4,7 +4,7 @@ namespace Tlab\WordGenerator\Matrix;
 
 /**
  * Class PortugueseMatrix
- * 
+ *
  * Provides transition matrices for Portuguese-like word generation
  */
 class PortugueseMatrix extends LanguageMatrix
@@ -16,7 +16,7 @@ class PortugueseMatrix extends LanguageMatrix
     {
         return 'pt';
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -26,7 +26,7 @@ class PortugueseMatrix extends LanguageMatrix
     }
     /**
      * Create a standard Portuguese transition matrix
-     * 
+     *
      * @return self
      */
     /**
@@ -42,7 +42,7 @@ class PortugueseMatrix extends LanguageMatrix
             'i' => ['a','c','d','l','m','n','r','s','t','v','z','o','ç'], // 'i' is less common at word beginnings
             'o' => ['b','c','d','l','m','n','p','r','s','t','v','z','a','u','ç'], // 'o' is common in Portuguese
             'u' => ['a','c','d','l','m','n','r','s','t','z','i','o','ç'], // 'u' often follows 'q' and 'g'
-            
+
             // Consonants - Portuguese has specific consonant patterns
             'b' => ['a','e','i','o','r','l'], // 'b' often followed by vowels or 'r'/'l'
             'c' => ['a','e','h','i','o','r','u'], // 'c' + 'h' makes 'ch' sound, common in Portuguese
@@ -73,7 +73,7 @@ class PortugueseMatrix extends LanguageMatrix
 
     /**
      * Create an easy mode Portuguese transition matrix with simpler patterns
-     * 
+     *
      * @return self
      */
     /**
@@ -89,7 +89,7 @@ class PortugueseMatrix extends LanguageMatrix
             'i' => ['a','c','d','l','m','n','r','s','t','v'],     // Removed 'z', 'o', 'ç'
             'o' => ['b','c','d','l','m','n','p','r','s','t','v'], // Removed complex transitions
             'u' => ['a','c','d','l','m','n','r','s','t'],         // Removed 'z', 'i', 'o', 'ç'
-            
+
             // Consonants with simpler patterns
             'b' => ['a','e','i','o'], // Removed 'r','l' combinations
             'c' => ['a','e','i','o'], // Removed 'h','r','u' combinations

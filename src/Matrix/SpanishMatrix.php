@@ -4,7 +4,7 @@ namespace Tlab\WordGenerator\Matrix;
 
 /**
  * Class SpanishMatrix
- * 
+ *
  * Provides transition matrices for Spanish-like word generation
  */
 class SpanishMatrix extends LanguageMatrix
@@ -16,7 +16,7 @@ class SpanishMatrix extends LanguageMatrix
     {
         return 'es';
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -24,7 +24,7 @@ class SpanishMatrix extends LanguageMatrix
     {
         return 'Spanish';
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -38,7 +38,7 @@ class SpanishMatrix extends LanguageMatrix
             'i' => ['a','c','d','l','m','n','r','s','t','v','o'], // 'i' is less common at word beginnings
             'o' => ['b','c','d','l','m','n','p','r','s','t','v','a','u'], // 'o' is common in Spanish
             'u' => ['a','c','d','l','m','n','r','s','t','i','o'], // 'u' often follows 'q' and 'g'
-            
+
             // Consonants - Spanish has specific consonant patterns
             'b' => ['a','e','i','o','r','l'], // 'b' often followed by vowels or 'r'/'l'
             'c' => ['a','e','h','i','o','r','u'], // 'c' + 'h' makes 'ch' sound, common in Spanish
@@ -76,28 +76,28 @@ class SpanishMatrix extends LanguageMatrix
         // Matrix for easy spelling mode - simpler letter combinations
         $easyMatrix = [
             // Vowels with simpler transitions
-            'a' => ['b','c','d','l','m','n','p','r','s','t'], 
-            'e' => ['b','c','d','l','m','n','p','r','s','t'], 
-            'i' => ['a','c','d','l','m','n','r','s','t'],     
-            'o' => ['b','c','d','l','m','n','p','r','s','t'], 
-            'u' => ['a','c','d','l','m','n','r','s','t'],     
-            
+            'a' => ['b','c','d','l','m','n','p','r','s','t'],
+            'e' => ['b','c','d','l','m','n','p','r','s','t'],
+            'i' => ['a','c','d','l','m','n','r','s','t'],
+            'o' => ['b','c','d','l','m','n','p','r','s','t'],
+            'u' => ['a','c','d','l','m','n','r','s','t'],
+
             // Consonants with simpler patterns
-            'b' => ['a','e','i','o'], 
-            'c' => ['a','e','i','o'], 
-            'd' => ['a','e','i','o'], 
-            'f' => ['a','e','i','o'], 
-            'g' => ['a','e','i','o'], 
-            'h' => ['a','e','i','o'], 
-            'j' => ['a','e','i','o'], 
-            'l' => ['a','e','i','o'], 
-            'm' => ['a','e','i','o'], 
-            'n' => ['a','e','i','o'], 
-            'p' => ['a','e','i','o'], 
-            'r' => ['a','e','i','o'], 
-            's' => ['a','e','i','o'], 
-            't' => ['a','e','i','o'], 
-            'v' => ['a','e','i','o'], 
+            'b' => ['a','e','i','o'],
+            'c' => ['a','e','i','o'],
+            'd' => ['a','e','i','o'],
+            'f' => ['a','e','i','o'],
+            'g' => ['a','e','i','o'],
+            'h' => ['a','e','i','o'],
+            'j' => ['a','e','i','o'],
+            'l' => ['a','e','i','o'],
+            'm' => ['a','e','i','o'],
+            'n' => ['a','e','i','o'],
+            'p' => ['a','e','i','o'],
+            'r' => ['a','e','i','o'],
+            's' => ['a','e','i','o'],
+            't' => ['a','e','i','o'],
+            'v' => ['a','e','i','o'],
         ];
 
         // Simpler word endings for easy mode

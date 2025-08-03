@@ -6,7 +6,7 @@ use Tlab\WordGenerator\Matrix\TransitionMatrix;
 
 /**
  * Class WordGenerator
- * 
+ *
  * Generates pronounceable words based on a transition matrix
  */
 class WordGenerator
@@ -18,7 +18,7 @@ class WordGenerator
 
     /**
      * WordGenerator constructor
-     * 
+     *
      * @param TransitionMatrix $matrix The transition matrix to use
      */
     public function __construct(TransitionMatrix $matrix)
@@ -28,7 +28,7 @@ class WordGenerator
 
     /**
      * Generate a single word
-     * 
+     *
      * @param  int $maxLength Maximum word length
      * @return string Generated word
      */
@@ -59,13 +59,13 @@ class WordGenerator
         if ($maxLength >= 3 && !empty($commonEndings) && mt_rand(0, 1) == 1) {
             $ending = $commonEndings[array_rand($commonEndings)];
             // Make sure we don't exceed the maximum length
-            if (strlen($word) + strlen($ending) > $maxLength) {
-                $word = substr($word, 0, $maxLength - strlen($ending));
+            if (mb_strlen($word, 'UTF-8') + mb_strlen($ending, 'UTF-8') > $maxLength) {
+                $word = mb_substr($word, 0, $maxLength - mb_strlen($ending, 'UTF-8'), 'UTF-8');
             }
             $word .= $ending;
         } else {
             // Complete the word up to the maximum length
-            while (strlen($word) < $maxLength) {
+            while (mb_strlen($word, 'UTF-8') < $maxLength) {
                 $nextLetters = $this->matrix->getNextLetters($current);
                 if (empty($nextLetters)) {
                     break;
@@ -77,15 +77,15 @@ class WordGenerator
         }
 
         // Ensure we don't exceed the maximum length
-        return substr($word, 0, $maxLength);
+        return mb_substr($word, 0, $maxLength, 'UTF-8');
     }
 
     /**
      * Generate multiple words
-     * 
+     *
      * @param  int $count  Number of words to generate
      * @param  int $maxLength Maximum word length
-     * @return array Array of generated words
+     * @return array<int, string> Array of generated words
      */
     public function generateWords(int $count, int $maxLength = 6): array
     {
