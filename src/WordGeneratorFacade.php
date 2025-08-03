@@ -9,7 +9,7 @@ use Tlab\WordGenerator\Matrix\SpanishMatrix;
 
 /**
  * Class WordGeneratorFacade
- * 
+ *
  * Main facade class for generating language-specific words
  */
 class WordGeneratorFacade
@@ -31,7 +31,7 @@ class WordGeneratorFacade
 
     /**
      * WordGeneratorFacade constructor
-     * 
+     *
      * @param string $language The language to use (default: 'portuguese')
      * @param bool   $easyMode Whether to use easy mode with simpler patterns
      */
@@ -39,15 +39,15 @@ class WordGeneratorFacade
     {
         $this->language = strtolower($language);
         $this->easyMode = $easyMode;
-        
+
         // Create the appropriate matrix based on language
         $matrix = $this->createMatrixForLanguage($language, $easyMode);
         $this->generator = new WordGenerator($matrix);
     }
-    
+
     /**
      * Create a matrix for the specified language
-     * 
+     *
      * @param  string $language The language to create a matrix for
      * @param  bool   $easyMode Whether to use easy mode
      * @return LanguageMatrix The language-specific matrix
@@ -55,21 +55,21 @@ class WordGeneratorFacade
     protected function createMatrixForLanguage(string $language, bool $easyMode): LanguageMatrix
     {
         switch ($language) {
-        case 'portuguese':
-        case 'pt':
-            return $easyMode ? PortugueseMatrix::createEasyMode() : PortugueseMatrix::createStandard();
-        case 'spanish':
-        case 'es':
-            return $easyMode ? SpanishMatrix::createEasyMode() : SpanishMatrix::createStandard();
-        default:
-            // Default to Portuguese if the language is not supported
-            return $easyMode ? PortugueseMatrix::createEasyMode() : PortugueseMatrix::createStandard();
+            case 'portuguese':
+            case 'pt':
+                return $easyMode ? PortugueseMatrix::createEasyMode() : PortugueseMatrix::createStandard();
+            case 'spanish':
+            case 'es':
+                return $easyMode ? SpanishMatrix::createEasyMode() : SpanishMatrix::createStandard();
+            default:
+                // Default to Portuguese if the language is not supported
+                return $easyMode ? PortugueseMatrix::createEasyMode() : PortugueseMatrix::createStandard();
         }
     }
 
     /**
      * Generate a single word in the selected language
-     * 
+     *
      * @param  int $maxLength Maximum word length
      * @return string Generated word in the selected language
      */
@@ -80,10 +80,10 @@ class WordGeneratorFacade
 
     /**
      * Generate multiple words in the selected language
-     * 
+     *
      * @param  int $count     Number of words to generate
      * @param  int $maxLength Maximum word length for each word
-     * @return array Array of generated words
+     * @return array<string> Array of generated words
      */
     public function generateWords(int $count, int $maxLength = 6): array
     {
@@ -92,8 +92,8 @@ class WordGeneratorFacade
 
     /**
      * Save generated words to a file
-     * 
-     * @param  array  $words    Array of words to save
+     *
+     * @param  array<string>  $words    Array of words to save
      * @param  string $filePath Path to save the file
      * @return bool True if successful, false otherwise
      */
@@ -109,7 +109,7 @@ class WordGeneratorFacade
 
     /**
      * Create a new instance with standard patterns for the specified language
-     * 
+     *
      * @param  string $language The language to use
      * @return self
      */
@@ -120,7 +120,7 @@ class WordGeneratorFacade
 
     /**
      * Create a new instance with easy mode (simpler patterns) for the specified language
-     * 
+     *
      * @param  string $language The language to use
      * @return self
      */
